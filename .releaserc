@@ -1,51 +1,53 @@
 {
-    "tagFormat": 's3proxy-${version}',
-        "branches": [
-            {
-                "name": 'master',
+    "branches": [
+        {
+            "name": 'main',
                 prerelease: false
-            },
-            {
-                "name": 'releases\/+([0-9])?(\.\d+)(\.\d+|z|$)',
+        },
+        {
+            "name": 'releases\/+([
+                0-9
+            ])?(\.\d+)(\.\d+|z|$)',
                 prerelease: false
-            },
-            {
-                "name": 'helm-chart',
+        },
+        {
+            "name": 'next',
                 prerelease: true
-            },
-            {
+        },
+        {
                 name: 'next-major',
                 prerelease: true
-            },
+        }
+    ],
+            plugins: [
+        [
+            "@semantic-release/commit-analyzer",
             {
-                name: 'develop',
-                prerelease: true
-            },
-            {
-                name: 'develop\/.*',
-                prerelease: true
+                "preset": "conventionalcommits",
+                "presetConfig": "conventional-changelog-conventionalcommits"
             }
         ],
-            plugins: [
-                [
-                    "@semantic-release/commit-analyzer",
-                    {
-                        "preset": "conventionalcommits",
-                        "presetConfig": "conventional-changelog-conventionalcommits"
-                    }
+        "@semantic-release/release-notes-generator",
+        [
+            "@semantic-release/exec",
+            {
+                "prepareCmd": './.github/workflows/scripts/prepareHelm.sh ${nextRelease.version
+                }',
+                "publishCmd": './.github/workflows/scripts/publishHelm.sh'
+            }
+        ],
+        [
+            "@semantic-release/git",
+            {
+                "assets": [
+                    "pom.xml",
+                    "charts/s3proxy/Chart.yaml"
                 ],
-                "@semantic-release/release-notes-generator",
-                ["@semantic-release/exec", {
-                    "prepareCmd": './.github/workflows/scripts/prepareHelm.sh ${nextRelease.version}',
-                    "publishCmd": './.github/workflows/scripts/publishHelm.sh'
-                }],
-                ["@semantic-release/git", {
-                    "assets": [
-                        "pom.xml",
-                        "charts/s3proxy/Chart.yaml"
-                    ],
-                    "message": "chore(release): ${nextRelease.version}\n\n${nextRelease.notes}"
-                }],
-                ["@semantic-release/github"],
-            ]
+                "message": "chore(release): ${nextRelease.version}\n\n${nextRelease.notes}"
+            }
+        ],
+        [
+            "@semantic-release/github"
+        ],
+    ]
 }
