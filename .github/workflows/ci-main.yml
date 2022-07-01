@@ -33,7 +33,7 @@ jobs:
         run: echo "::set-output name=defined::true"
         env:
           MY_KEY: ${{ secrets.DOCKER_PASS }}
-      - uses: actions/setup-node@v2
+      - uses: actions/setup-node@v3
         with:
           node-version: "18"
       - name: Semantic Release
@@ -119,7 +119,7 @@ jobs:
             REVISION=${{ needs.meta.outputs.container_revision }}
           cache-from: type=registry,ref=${{ needs.meta.outputs.container_base }}
           cache-to: type=inline
-      - uses: actions/setup-node@v2
+      - uses: actions/setup-node@v3
         with:
           node-version: "18"
       - uses: azure/setup-helm@v3
