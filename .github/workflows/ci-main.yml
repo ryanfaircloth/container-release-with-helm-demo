@@ -138,9 +138,3 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           REGISTRY_USERNAME: ${{ github.repository_owner }}
           REGISTRY_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
-      - name: Setup regctl
-        if: github.event_name != 'pull_request' && needs.meta.outputs.dockerhub-publish == 'true'
-        run: |
-          curl -L https://github.com/regclient/regclient/releases/download/v0.3.5/regctl-linux-amd64 >/tmp/regctl
-          chmod 755 /tmp/regctl
-
