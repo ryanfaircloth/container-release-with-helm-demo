@@ -1,0 +1,60 @@
+{
+    "branches": [
+        {
+            "name": 'master',
+                prerelease: false
+        },
+        {
+            "name": 'releases\/+([
+                0-9
+            ])?(\.\d+)(\.\d+|z|$)',
+                prerelease: false
+        },
+        {
+            "name": 'helm-chart',
+                prerelease: true
+        },
+        {
+                name: 'next-major',
+                prerelease: true
+        },
+        {
+                name: 'develop',
+                prerelease: true
+        },
+        {
+                name: 'develop\/.*',
+                prerelease: true
+        }
+    ],
+            plugins: [
+        [
+            "@semantic-release/commit-analyzer",
+            {
+                "preset": "conventionalcommits",
+                "presetConfig": "conventional-changelog-conventionalcommits"
+            }
+        ],
+        "@semantic-release/release-notes-generator",
+        [
+            "@semantic-release/exec",
+            {
+                "prepareCmd": './.github/workflows/scripts/prepareHelm.sh ${nextRelease.version
+                }',
+                "publishCmd": './.github/workflows/scripts/publishHelm.sh'
+            }
+        ],
+        [
+            "@semantic-release/git",
+            {
+                "assets": [
+                    "charts/simple-chart/Chart.yaml"
+                ],
+                "message": "chore(release): ${nextRelease.version}\n\n${nextRelease.notes}"
+            }
+        ],
+        [
+            "@semantic-release/github"
+        ],
+    ]
+}
