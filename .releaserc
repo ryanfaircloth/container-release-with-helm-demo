@@ -40,8 +40,7 @@
             "@semantic-release/git",
             {
                 "assets": [
-                    "pom.xml",
-                    "charts/s3proxy/Chart.yaml"
+                    "charts/container-release-with-help-demo/Chart.yaml"
                 ],
                 "message": "chore(release): ${nextRelease.version}\n\n${nextRelease.notes}"
             }
