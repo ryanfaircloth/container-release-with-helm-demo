@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -ev
 helm push $(ls ${GITHUB_REPOSITORY#*/}*.tgz) oci://ghcr.io/$GITHUB_REPOSITORY/charts
-
+#
 mkdir /tmp/gh-pages
 wget https://${GITHUB_REPOSITORY_OWNER}.github.io/${GITHUB_REPOSITORY#*/}/index.yaml -P /tmp/
 helm repo index . --url https://github.com/${GITHUB_REPOSITORY}/releases/download/$1 --merge /tmp/index.yaml
