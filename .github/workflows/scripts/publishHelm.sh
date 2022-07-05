@@ -10,8 +10,8 @@ cp -f index.yaml /tmp/index.yaml
 gh repo clone ${GITHUB_REPOSITORY} /tmp/gh-pages/
 pushd /tmp/gh-pages
 gh auth setup-git
-cp -f /tmp/index.yaml .
 git checkout gh-pages
+cp -f /tmp/index.yaml .
 git add index.yaml
 git commit -m "chore(helm): Publish $1"
 git push
