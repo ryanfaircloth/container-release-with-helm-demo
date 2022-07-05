@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
-set -e
+set -ev
 helm push $(ls ${GITHUB_REPOSITORY#*/}-*.tgz) oci://ghcr.io/$GITHUB_REPOSITORY/charts
