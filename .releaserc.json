@@ -27,17 +27,9 @@
         ],
         "@semantic-release/release-notes-generator",
         [
-            "semantic-release-helm3",
-            {
-                "chartPath": "./chart",
-                "crPublish": true
-            }
-        ],
-        [
             "@semantic-release/exec",
             {
-                "prepareCmd": "./.github/workflows/scripts/prepareHelm.sh ${nextRelease.version}",
-                "publishCmd": "./.github/workflows/scripts/publishHelm.sh"
+                "prepareCmd": "./.github/workflows/scripts/prepareHelm.sh ${nextRelease.version}"
             }
         ],
         [
