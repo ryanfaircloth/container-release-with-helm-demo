@@ -78,14 +78,15 @@ jobs:
         with:
           submodules: "recursive"
 
-
-
   Containerize:
     runs-on: ubuntu-latest
     needs: [runTests, meta]
     steps:
       #Yes we need code
       - uses: actions/checkout@v2
+        with:
+          submodules: false
+          persist-credentials: false
       # These steps are quick and will work or if fail only because of external issues
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
