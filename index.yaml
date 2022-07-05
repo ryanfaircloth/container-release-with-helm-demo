@@ -1,4 +1,14 @@
 apiVersion: v1
 entries:
-  
-generated: "2022-07-05T19:49:42.689443786Z"
+  container-release-with-help-demo:
+  - apiVersion: v2
+    appVersion: 1.2.10
+    created: "2022-07-05T22:27:36.094631115Z"
+    description: A Helm chart for Kubernetes
+    digest: 89125db3316bad75a6eb759209db1ee5ab7de37a9ddfb2278f61126d5b2d6cd0
+    name: container-release-with-help-demo
+    type: application
+    urls:
+    - https://github.com/ryanfaircloth/container-release-with-help-demo/releases/download/1.2.10/container-release-with-help-demo-1.2.10.tgz
+    version: 1.2.10
+generated: "2022-07-05T22:27:36.094006206Z"
