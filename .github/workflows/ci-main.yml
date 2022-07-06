@@ -1,14 +1,17 @@
 #
 name: Main CI
+#
 on:
   push:
     branches:
       - "master"
-      - "develop"
-      - "*"
+      - "next"
+      - "next-major"
   pull_request:
     branches:
-      - "*"
+      - "master"
+      - "next"
+      - "next-major"
 jobs:
   meta:
     runs-on: ubuntu-latest
