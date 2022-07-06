@@ -15,4 +15,5 @@ cp -f /tmp/index.yaml .
 git add index.yaml
 git commit -m "chore(helm): Publish $1"
 git push
-#test2
+#test3
+
