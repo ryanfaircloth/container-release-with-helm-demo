@@ -46,7 +46,6 @@ jobs:
             @semantic-release/git
             @google/semantic-release-replace-plugin
             conventional-changelog-conventionalcommits
-            semantic-release-helm3
           dry_run: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -134,7 +133,6 @@ jobs:
             @semantic-release/exec
             @semantic-release/git
             conventional-changelog-conventionalcommits
-            semantic-release-helm3
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           REGISTRY_USERNAME: ${{ github.repository_owner }}
